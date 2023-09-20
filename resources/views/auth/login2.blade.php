@@ -4,11 +4,11 @@
 
     <x-slot name='title'>
         <div class="mt-4">
-            <h4 class="text-3xl text-center font-extrabold">{{__('User Login')}}</h4>
+            <h4 class="text-3xl text-center font-extrabold">{{__('Admin Login')}}</h4>
         </div>
     </x-slot>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('admin.store') }}">
         @csrf
 
         <!-- Email Address -->

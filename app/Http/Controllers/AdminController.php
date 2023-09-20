@@ -2,66 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
-use Spatie\FlareClient\View;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Auth\AdminLoginRequest;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    //
+    public function index(){
+        return view('dashboard2');
+    }
+
+    public function create(){
+        return view('auth.login2');
+    }
+
+    public function store(AdminLoginRequest $request)
     {
-        //
-        return view ('dashboard2');
+       
+
+        $credentials = $request->validated();
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard')); 
+           
+        }
+
+        // Authentication failed
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Destroy an authenticated session.
      */
-    public function create()
+    public function destroy(Request $request)
     {
-        //
-    }
+         $request->session()->forget('admin_id');
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        Auth::guard('admin')->logout();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
+        // $request->session()->invalidate();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
+        $request->session()->regenerateToken();
+        
+       
+        return redirect('/admin');
     }
 }
