@@ -67,6 +67,7 @@
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
   <script src="{{asset('js/dashboard.js')}}"></script>
+  <script src="{{asset('js/script.js')}}"></script>
   <!-- End custom js for this page-->
   @yield('script')
 </body>
