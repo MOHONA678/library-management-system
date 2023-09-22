@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('/signout',[AdminController::class, 'destroy'])->name('admin.logout');
     Route::resource('roles',RoleController::class);
+    Route::resource('user',UserController::class);
 });
 
 Route::get('/dashboard', function () {
