@@ -34,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            @forelse ($user as $k => $user)
+            @forelse ($users as $k => $user)
               <tr>
                 <td class="d-none d-xl-table-cell">{{ $k + 1 }}</td>
                 <td>

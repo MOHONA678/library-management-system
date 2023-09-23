@@ -12,7 +12,7 @@
   <section class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
       <div class="col-6">
-        <form action="{{route('admin.roles.update', $user->id) }}" method="post">
+        <form action="{{route('user.update', $user->id) }}" method="post">
           @csrf
           @method('put')
           <div class="card flex-fill">
@@ -22,16 +22,16 @@
             <div class="card-body py-3">
               <div class="row g-3">
                 <div class="col-12">
-                  <input type="text" name="title" class="form-control my-2" id="title" placeholder="{{ __('Name') }}" value="{{ $user->name }}" required />
+                  <input type="text" name="name" class="form-control my-2" id="name" placeholder="{{ __('Name') }}" value="{{ $user->name }}" required />
                 </div>
                 <div class="col-12">
-                  <input type="text" name="title" class="form-control my-2" id="title" placeholder="{{ __('Email') }}" value="{{ $user->email}}" required />
+                  <input type="text" name="email" class="form-control my-2" id="email" placeholder="{{ __('Email') }}" value="{{ $user->email}}" required />
                 </div>
                 <div class="col-12">
-                  <input type="tel" name="phone" class="form-control" id="phone" placeholder="{{ __('Primary Phone') }}" value="{{ $user->phone }}" required oninput="formatPhoneNumber(this)" maxlength="19" />
+                  <input type="tel" name="phone" class="form-control my-2" id="phone" placeholder="{{ __('Primary Phone') }}" value="{{ $user->phone }}" required oninput="formatPhoneNumber(this)" maxlength="19" />
                 </div>
-                <div class="col-12">
-                  <select name="status" class="form-control my-2" id="role">
+                <div class="col-6">
+                  <select name="role_id" class="form-control my-2" id="role">
                     <option value="">{{ __('-- User Role --') }}</option>
                     @foreach ($roles as $role)
                       <option value="{{ $role->id }}" {{ $role->id === $user->role_id ? 'selected' : '' }} >{{ $role->title }}</option>

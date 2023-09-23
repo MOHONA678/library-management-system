@@ -17,8 +17,8 @@ class AdminSeeder extends Seeder
         //
         $admins = [
            
-            [  'name' => 'John Smith', 'email' => 'john@email.com',  'password' => Hash::make('secret') ],
-            [  'name' => 'James Brown', 'email' => 'james@email.com',  'password' => Hash::make('secret') ],
+            [  'name' => 'John Smith', 'email' => 'john@email.com', 'phone' => '01455934809', 'password' => Hash::make('secret') ],
+            [  'name' => 'James Brown', 'email' => 'james@email.com', 'phone' => '01455934809' ,'password' => Hash::make('secret') ],
         ];
 
         foreach ($admins as $admin) {

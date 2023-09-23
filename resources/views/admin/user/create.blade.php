@@ -12,7 +12,7 @@
   <section class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
       <div class="col-6">
-        <form action="{{ route('roles.store')  }}" method="post">
+        <form action="{{ route('user.store')  }}" method="post">
           @csrf
           <div class="card flex-fill">
             <div class="card-header bg-white">
@@ -35,8 +35,8 @@
                 <div class="col-6">
                   <input type="password" name="cpass" class="form-control  my-2" id="slug" placeholder="{{ __('Confirm password') }}" value="{{ old('confirm password') }}" />
                 </div>  
-                <div class="col-12">
-                  <select name="status" class="form-control my-2" id="role">
+                <div class="col-6">
+                  <select name="role_id" class="form-control my-2" id="role">
                     <option value="">{{ __('-- User Role --') }}</option>
                     @foreach ($roles as $role)
                       <option value="{{ $role->id }}">{{ $role->title }}</option>
@@ -55,7 +55,7 @@
             <div class="card-footer bg-white">
               <div class="row">
                 <div class="col-6 d-grid">
-                  <a href="{{ route('roles.index')  }}" class="btn btn-secondary btn-block" >
+                  <a href="{{ route('user.index')  }}" class="btn btn-secondary btn-block" >
                     <i class="align-middle me-1" data-feather="arrow-left"></i>
                     <span class="ps-1">{{ __('Discard') }}</span>
                   </a>
