@@ -2,52 +2,74 @@
 
 namespace App\Http\Controllers;
 
-use App\Providers\RouteServiceProvider;
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Auth\AdminLoginRequest;
 
 class AdminController extends Controller
 {
-    //
-    public function index(){
-        return view('dashboard2');
-    }
-
-    public function create(){
-        return view('auth.login2');
-    }
-
-    public function store(AdminLoginRequest $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-       
-
-        $credentials = $request->validated();
-
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('admin.dashboard')); 
-           
-        }
-
-        // Authentication failed
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        //
+        $admins = Admin::all();
+        return view('admin.admins.index', compact('admins'));
     }
 
     /**
-     * Destroy an authenticated session.
+     * Show the form for creating a new resource.
      */
-    public function destroy(Request $request)
+    public function create()
     {
-         $request->session()->forget('admin_id');
+        //
+        return view('admin.admins.create');
+    }
 
-        Auth::guard('admin')->logout();
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+        Admin::create($request->all());
+        return back()->with('success', 'Admin crated successfully');
+    }
 
-        // $request->session()->invalidate();
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-        $request->session()->regenerateToken();
-        
-       
-        return redirect('/admin');
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Admin $admin)
+    {
+        //
+        return view('admin.admins.edit', compact('admin'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Admin $admin)
+    {
+        //
+        $admin->update($request->all());
+        return back()->with('success', 'admin updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Admin $admin)
+    {
+        //
+        $admin->delete();
+        return back()->with('success', 'admin deleted successfully');
     }
 }

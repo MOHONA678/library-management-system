@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Auth\AdminAuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -21,13 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::middleware('guest:admin')->group(function () {
-    Route::get('admin',[AdminController::class, 'create'])->name('admin.create');
-    Route::post('admin',[AdminController::class, 'store'])->name('admin.store');
+    Route::get('admin',[AdminAuthenticatedSessionController::class, 'create'])->name('admin.create');
+    Route::post('admin',[AdminAuthenticatedSessionController::class, 'store'])->name('admin.store');
 });
 
 Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
-    Route::post('/signout',[AdminController::class, 'destroy'])->name('admin.logout');
+    Route::post('/signout',[AdminAuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
+    Route::resource('admins',AdminController::class);
     Route::resource('roles',RoleController::class);
     Route::resource('user',UserController::class);
 });
