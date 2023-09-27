@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Auth\AdminAuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -31,6 +32,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('admins',AdminController::class);
     Route::resource('roles',RoleController::class);
     Route::resource('user',UserController::class);
+    Route::resource('author',AuthorController::class);
 });
 
 Route::get('/dashboard', function () {
