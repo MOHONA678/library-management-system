@@ -22,7 +22,7 @@
             <div class="card-body py-3">
               <div class="row g-3">
                 <div class="col-12">
-                  <input type="text" name="title" class="form-control my-2" id="title" placeholder="{{ __('Name') }}" value="{{ $author->name }}" required />
+                  <input type="text" name="name" class="form-control my-2" id="name" placeholder="{{ __('Name') }}" value="{{ $author->name }}" required />
                 </div>
                 <div class="col-12">
                   <textarea name="description" class="form-control my-2" id="description" cols="30" rows="10" placeholder="{{ __('Type details here ...') }}">{{ $author->description }}</textarea>

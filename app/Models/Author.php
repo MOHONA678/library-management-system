@@ -16,8 +16,5 @@ class Author extends Model
      */
     protected $fillable = [ 'name', 'description','status' ];
 
-    public function authors(): HasMany {
-        return $this->hasMany(Author::class);
-    }
-
+    
 }

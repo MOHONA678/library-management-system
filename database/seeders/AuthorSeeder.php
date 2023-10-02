@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +15,12 @@ class AuthorSeeder extends Seeder
     {
         //
        $authors=[
-        ['name' => 'Robindronath Thakur', ]
+        ['name' => 'Robindronath Thakur', 'status' => 1],
+        ['name' => 'Kazi Nuzrul Islam', 'status' => 1],
        ]; 
+
+       foreach ($authors as $author) {
+            Author::create($author);
+        }
     }
 }

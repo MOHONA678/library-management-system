@@ -35,6 +35,7 @@ class AuthorController extends Controller
         //
         Author::create($request->all());
         return back()->with('success', 'Author crated successfully');
+        // dd($request->all());
     }
 
     /**
