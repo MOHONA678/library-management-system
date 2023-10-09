@@ -15,13 +15,12 @@ class RoleSeeder extends Seeder
     {
         
         $roles = [
+            
             [ 'title' => 'Moderator', 'slug' => 'Moderator', 'status' => 1 ],
             [ 'title' => 'Editor', 'slug' => 'Editor', 'status' => 1 ],
             [ 'title' => 'Member', 'slug' => 'Member', 'status' => 1 ],
-           
-            
-            
         ];
+        
         foreach ($roles as $role) {
             Role::create($role);
         }

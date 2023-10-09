@@ -2,6 +2,8 @@
 use App\Http\Controllers\Auth\AdminAuthenticatedSessionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -33,6 +35,8 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::resource('roles',RoleController::class);
     Route::resource('user',UserController::class);
     Route::resource('author',AuthorController::class);
+    Route::resource('genre',GenreController::class);
+    Route::resource('category',CategoryController::class);
 });
 
 Route::get('/dashboard', function () {
